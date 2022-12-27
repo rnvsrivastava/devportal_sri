@@ -42,6 +42,10 @@ export const NavBar = observer(
         <MenuLink to='/getting-started'>{fragments.GettingStarted.title}</MenuLink>
         <MenuLink to='/apis'>{fragments.APIs.title}</MenuLink>
 
+
+        <MenuLink to='/faqs'>{fragments.FAQs.title}</MenuLink>
+
+        
         <Menu.Menu position='right'>
           {isAuthenticated() ? <>
             {isAdmin() && <MenuLink to='/admin/apis'>Admin Panel</MenuLink>}
@@ -57,7 +61,7 @@ export const NavBar = observer(
               </div>
             </MenuLink>
           </> : <>
-            <MenuLink to={getCognitoUrl('login')}>Sign In</MenuLink>
+            <MenuLink to={getCognitoUrl('login')}>Login</MenuLink>
             <MenuLink to={getCognitoUrl('signup')}>Register</MenuLink>
           </>}
         </Menu.Menu>

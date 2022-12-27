@@ -44,6 +44,8 @@ export function apiGatewayClient () {
   })
 }
 
+// setInterval repeatedly calls a function
+
 export function apiGatewayClientWithCredentials () {
   if (cachedClientWithCredentials) { return Promise.resolve(cachedClientWithCredentials) }
   return new Promise(resolve => {

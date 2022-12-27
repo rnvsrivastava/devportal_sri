@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react'
-
+ 
 // swagger-ui
 import SwaggerUI from 'swagger-ui'
 import 'swagger-ui/dist/swagger-ui.css'
@@ -26,7 +26,7 @@ import { observer } from 'mobx-react'
 export default observer(class ApisPage extends React.Component {
   containerRef = React.createRef()
   hasRoot = false
-
+   
   componentDidMount () { this.updateApi(true) }
   componentDidUpdate () { this.updateApi(false) }
   componentWillUnmount () { this.containerRef = null }

@@ -18,6 +18,7 @@ import Home from 'pages/Home'
 import GettingStarted from 'pages/GettingStarted'
 import Dashboard from 'pages/Dashboard'
 import Apis from 'pages/Apis'
+import FAQs from 'pages/FAQs'
 import { Admin } from 'pages/Admin'
 
 // components
@@ -62,6 +63,8 @@ export const AdminRoute = ({ component: Component, ...rest }) => (
 const HomeWrap = props => <Home {...props} />
 const GettingStartedWrap = props => <GettingStarted {...props} />
 const DashboardWrap = props => <Dashboard {...props} />
+const FAQsWrap = props => <FAQs {...props} />
+
 
 class App extends React.Component {
   constructor () {
@@ -99,6 +102,7 @@ class App extends React.Component {
             />
             <Route path='/getting-started' component={GettingStartedWrap} />
             <RegisteredRoute path='/dashboard' component={DashboardWrap} />
+            <Route path='/FAQs' component={FAQsWrap} />
             <AdminRoute path='/admin' component={Admin} />
             <Route exact path='/apis' component={Apis} />
             <Route exact path='/apis/search' component={ApiSearch} />

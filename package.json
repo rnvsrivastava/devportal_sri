@@ -35,6 +35,7 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
+    "react-faq-component": "^1.3.4",
     "util": "^0.12.4"
   }
 }

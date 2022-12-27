@@ -20,6 +20,7 @@ export const loadFragments = () => {
   loadHtml('/custom-content/content-fragments/GettingStarted.md', 'GettingStarted')
   loadHtml('/custom-content/content-fragments/Home.md', 'Home')
   loadHtml('/custom-content/content-fragments/APIs.md', 'APIs')
+  loadHtml('/custom-content/content-fragments/FAQs.md', 'FAQs')
 }
 
 /**
