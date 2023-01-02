@@ -18,7 +18,7 @@ import Home from 'pages/Home'
 import GettingStarted from 'pages/GettingStarted'
 import Dashboard from 'pages/Dashboard'
 import Apis from 'pages/Apis'
-import FAQs from 'pages/FAQs'
+import FAQs from 'pages/FAQs.jsx'
 import { Admin } from 'pages/Admin'
 
 // components

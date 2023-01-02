@@ -1,13 +1,14 @@
 // Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import React from 'react'
-import Faq from 'react-faq-component';
+import React, {useState} from 'react'
+import Faq from './/FAQ'
 // mobx
 import { observer } from 'mobx-react'
-
 // fragments
 import { fragments } from 'services/get-fragments'
+import FaqSample from './Faq_sample'
+
 import {
   isAdmin,
   isAuthenticated,
@@ -22,9 +23,8 @@ import {
 import { Container } from 'semantic-ui-react'
 
 const data = {
-  title: "FAQ",
   
-  rows: [
+  faqs: [
     {
       title: "What if I need functionality that isn't supported in the portal?",
       content: `You have the following options: <br><br>
@@ -55,36 +55,23 @@ const data = {
     }]
 }
 
-function FAQ() {
-  return <div>
-  <Faq data={data}/>
-</div>
-  
-}
+
 
 export default observer(() => (
   <Container style={{ padding: '40px' }}>
-    
-    {/* <fragments.FAQs.jsx /> */}
-
-  {/*  If admin - user be able to add FAQs or modify faqs. faqs imported from dynamodb
-  if user - user be able to view the faqs. faqs from dynamodb */}
+   
 
  { isAuthenticated() && isAdmin() ? 
  <>
-
-    <a href="" style={{border:'solid',adding:'6px',backgroundColor:'#DFA437', color:'black', margin:'10px',padding:'10px'}}>Add Faqs</a>
-    <a href="" style={{border:'solid',adding:'6px',backgroundColor:'#DFA437', color:'black', margin:'10px',padding:'10px' }}>Modify Faqs</a>
-    <a href="" style={{border:'solid',adding:'6px',backgroundColor:'#DFA437', color:'black', margin:'10px',padding:'10px' }}>Delete Faqs</a>
-    <br></br><br></br>
-    <FAQ></FAQ>
+     <FaqSample />
  </>
  
  :
  
  <>
-    <FAQ></FAQ>
- </>}
-
+ <FaqSample />
+    <Faq />
+ </>
+ }
   </Container>
 ))
