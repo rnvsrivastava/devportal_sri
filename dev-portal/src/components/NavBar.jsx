@@ -42,8 +42,7 @@ export const NavBar = observer(
         <MenuLink to='/getting-started'>{fragments.GettingStarted.title}</MenuLink>
         <MenuLink to='/apis'>{fragments.APIs.title}</MenuLink>
 
-
-        <MenuLink to='/faqs'>{fragments.FAQs.title}</MenuLink>
+        <MenuLink to='/faqs/general'>{fragments.FAQs.title}</MenuLink>
 
         
         <Menu.Menu position='right'>

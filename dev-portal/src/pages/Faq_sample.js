@@ -1,12 +1,17 @@
 import React, {useState, useEffect } from 'react'
 import axios from 'axios'
+
 // import {useParams} from 'react-router-dom'
 // import DisplayFaq from './DisplayFaq'
 // import AddFaq from './AddFaq';
 // Headers('Access-Control-Allow-Origin: *');
 // Headers('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 // Headers('Access-Control-Allow-Methods: Content-Type, XX-Auth-Token, Origin, Authorization');
-    
+import {
+    isAdmin,
+    isAuthenticated,
+  } from 'services/self'
+
 
 export function Faq_sample() {
     
@@ -114,78 +119,109 @@ export function Faq_sample() {
     }
         return(
             <div>
+               
+            <div>
+            {
+                <table>
+                    <tr>
+                        <td>ID</td>
+                        <td>Question</td>
+                        <td>Answer</td>
+                        <td>Operations</td>
+                    </tr>
+                 
+                    { isAuthenticated() && isAdmin() ? 
+               <>
+               {
+                        faqs.map((faq)=>{
+                            return(
+                            <tr>
+                            <td>{faq.id}</td>
+                            <td>{faq.question}</td>
+                           
+                            <td>{faq.answer}</td>
+                            <span onClick={() => removeFaq(faq.id)} style ={{marginLeft:"10px", color:"red", cursor:"pointer"}}> Delete</span>
+                            <span onClick={()=>selectUser(faq.id)} style ={{marginLeft:"10px", color:"red", cursor:"pointer"}}> Update</span>
+                            </tr>)
+                            
+                        })
+                    }
                 
-                <h3> List of Faqs</h3>
-                <div>
-                {
-                    <table>
-                        <tr>
-                            <td>ID</td>
-                            <td>Question</td>
-                            <td>Answer</td>
-                            <td>Operations</td>
-                        </tr>
-                     
-                        
-                        {
-                            faqs.map((faq)=>{
-                                return(
-                                <tr>
-                                <td>{faq.id}</td>
-                                <td>{faq.question}</td>
-                               
-                                <td>{faq.answer}</td>
-                                <span onClick={() => removeFaq(faq.id)} style ={{marginLeft:"10px", color:"red", cursor:"pointer"}}> Delete</span>
-                                <span onClick={()=>selectUser(faq.id)} style ={{marginLeft:"10px", color:"red", cursor:"pointer"}}> Update</span>
-                                </tr>)
-                                
-                            })
-                        }
-                        
-                       
-                    </table>
-                }
-                </div>
-                <div>
-                    <div>
-                        <br></br>
-                        <h3> Update FAQ </h3>
-                    </div>
-
-                    <form onSubmit={updateFaq}>
-                    <label for="id" >ID</label>
-                        <input  type="text" id="id" name="id" value={id} onChange={(e)=>{setId(e.target.value)}}></input>
-                        <label for="question">Question</label>
-                        <input  type="text" id="question" name="question" value={question} onChange={(e)=>{setQuestion(e.target.value)}} ></input>
-                        <label for="question">Answer</label>
-                        <input  type="text" id="answer" name="answer" value={answer} onChange={(e)=>{setAnswer(e.target.value)}}></input>
-                        <input type="submit" value="Update FAQ" ></input>
-                        <br></br><br></br>
-                    </form>
-
-                </div>
-
-                <div>
-                    <div>
-                        <h3> Add New FAQ </h3>
-                    </div>
-
-                    <form onSubmit={addFaq}>
-                        <label for="id" >ID</label>
-                        <input  type="text" id="id" name="id" onChange={(e)=>{setId(e.target.value)}}></input>
-                        <label for="question" >Question</label>
-                        <input  type="text" id="question" name="question" onChange={(e)=>{setQuestion(e.target.value)}}></input>
-                        <label for="answer">Answer</label>
-                        <input  type="text" id="answer" name="answer" onChange={(e)=>{setAnswer(e.target.value)}}></input>
-                        <input type="submit" value="Add FAQ"></input>
-                        <br></br><br></br>
-                    </form>
-                      
-                </div>
-            </div> 
-                
+               
+               </> :
+               
+               <>
+                    {
+                        faqs.map((faq)=>{
+                            return(
+                            <tr>
+                            <td>{faq.id}</td>
+                            <td>{faq.question}</td>
+                           
+                            <td>{faq.answer}</td>
+                            </tr>)
+                            
+                        })
+                    }
+               </>}
+                    
+                   
+                </table>
+            }
+            </div>
            
-           )
+           <div>
+           { isAuthenticated() && isAdmin() ? 
+           <>
+                <div>
+                <div>
+                    <br></br>
+                    <h3> Update FAQ </h3>
+                </div>
+
+                <form onSubmit={updateFaq}>
+                <label for="id" >ID</label>
+                    <input  type="text" id="id" name="id" onChange={(e)=>{setId(e.target.value)}}></input>
+                    <label for="question">Question</label>
+                    <input  type="text" id="question" name="question" onChange={(e)=>{setQuestion(e.target.value)}} ></input>
+                    <label for="question">Answer</label>
+                    <input  type="text" id="answer" name="answer" onChange={(e)=>{setAnswer(e.target.value)}}></input>
+                    <input type="submit" value="Update FAQ" ></input>
+                    <br></br><br></br>
+                </form>
+
+            </div>
+
+            <div>
+                <div>
+                    <h3> Add New FAQ </h3>
+                </div>
+
+                <form onSubmit={addFaq}>
+                    <label for="id" >ID</label>
+                    <input  type="text" id="id" name="id" onChange={(e)=>{setId(e.target.value)}}></input>
+                    <label for="question" >Question</label>
+                    <input  type="text" id="question" name="question" onChange={(e)=>{setQuestion(e.target.value)}}></input>
+                    <label for="answer">Answer</label>
+                    <input  type="text" id="answer" name="answer" onChange={(e)=>{setAnswer(e.target.value)}}></input>
+                    <input type="submit" value="Add FAQ"></input>
+                    <br></br><br></br>
+                </form>
+                  
+            </div>
+           </>
+           
+           :
+        
+           <>
+           
+           </> }
+           </div>
+            
+        </div> 
+        
+        
+       )
       
 }
 

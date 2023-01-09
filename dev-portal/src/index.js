@@ -102,7 +102,7 @@ class App extends React.Component {
             />
             <Route path='/getting-started' component={GettingStartedWrap} />
             <RegisteredRoute path='/dashboard' component={DashboardWrap} />
-            <Route path='/FAQs' component={FAQsWrap} />
+            <Route path='/FAQs' component={FAQs} />
             <AdminRoute path='/admin' component={Admin} />
             <Route exact path='/apis' component={Apis} />
             <Route exact path='/apis/search' component={ApiSearch} />
