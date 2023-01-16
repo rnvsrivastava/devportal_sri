@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react'
 import axios from 'axios'
-
+import { API, Auth } from 'aws-amplify'
 // import {useParams} from 'react-router-dom'
 // import DisplayFaq from './DisplayFaq'
 // import AddFaq from './AddFaq';
@@ -15,29 +15,33 @@ import {
 
 export function Faq_sample() {
     
-    const url = `http://44.212.42.189:8080/faqs`;
-    const post_url = "http://44.212.42.189:8080/faq";
-    const put_url= "http://44.212.42.189:8080/faq/";
-    const delete_url = "http://44.212.42.189:8080/faq/"
+    const url = `https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq`;
+    const post_url = "https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq";
+    const put_url= "https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq/";
+    const delete_url = "https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq/"
 
     const [faqs, setFaqs] = useState([''])
     const [question, setQuestion] = useState("")
     const [answer, setAnswer] = useState("")
     const [id, setId] = useState(null)
-
+   
     useEffect(()=>{
         getAllFaqs();
     },[]);
 
     const getAllFaqs = () => {
-        fetch(url).then((result) => {
+        // console.log(token)
+        fetch(url,{
+            "Access-Control-Allow-Origin" : "*", 
+            "Access-Control-Allow-Credentials" : true 
+        }).then((result) => {
             result.json().then((resp) => {
                 resp = resp.sort((a,b) => {
                     if(a.id < b.id)
                     return -1;
                 })
                 resp.sort();
-
+                // console.log(token);
                 setFaqs(resp)
                 setQuestion(resp[0].question)
                 setAnswer(resp[0].answer)
@@ -54,6 +58,11 @@ export function Faq_sample() {
     {
         fetch(`${delete_url}${id}`, {
             method: 'DELETE',
+            headers:
+            {
+                "Access-Control-Allow-Origin" : "*", 
+                "Access-Control-Allow-Credentials" : true 
+            }
         }).then((result) => {
             result.json().then((resp) => {
                 getAllFaqs()
@@ -92,8 +101,11 @@ export function Faq_sample() {
             method: 'POST',
             headers: {
                 'Accept' : 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin" : "*", 
+                "Access-Control-Allow-Credentials" : true
             },
+            
             body:JSON.stringify(faq)
         }).then((result) => {
             result.json().then((resp) => {

@@ -13,10 +13,10 @@ import {
 
 export function PaymentFaq() {
     
-    const url = `http://localhost:8080/faqs/payment`;
-    const post_url = "http://localhost:8080/faq/payment";
-    const put_url= "http://localhost:8080/faq/payment/";
-    const delete_url = "http://localhost:8080/faq/payment"
+    const url = `https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq/payment`;
+    const post_url = "https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq/payment";
+    const put_url= "https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq/payment/";
+    const delete_url = "https://i17lo28q69.execute-api.us-east-1.amazonaws.com/test/faq/payment/"
 
     const [faqs, setFaqs] = useState([''])
     const [question, setQuestion] = useState("")
@@ -28,7 +28,10 @@ export function PaymentFaq() {
     },[]);
 
     const getAllFaqs = () => {
-        fetch(url).then((result) => {
+        fetch(url,{
+            "Access-Control-Allow-Origin" : "*", 
+            "Access-Control-Allow-Credentials" : true 
+        }).then((result) => {
             result.json().then((resp) => {
                 resp = resp.sort((a,b) => {
                     if(a.id < b.id)

@@ -24,7 +24,7 @@ import { Container } from 'semantic-ui-react'
 import SampleApi from './SampleApi'
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 export default function FAQs() {
-  
+
   return(
     <div class='flx'>
         <div className='faq-sidebar'>
@@ -43,7 +43,7 @@ export default function FAQs() {
             </Switch>
           </BrowserRouter>
         {/* <div class='faqs'>
-          <SampleApi />
+          <Faq_sample />
         </div> */}
         
       </div>
